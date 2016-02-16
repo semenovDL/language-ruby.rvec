@@ -1,0 +1,13 @@
+# If you want some example snippets, check out:
+# https://github.com/atom/language-gfm/blob/master/snippets/gfm.cson
+
+'.source.ruby.rvec':
+  'create entity':
+    'prefix': 'see'
+    'body': 'User::ServiceEntity.create :${1:EntityName}Class do\n\tbase_module :${1}\n\t$0\nend\n'
+  'create module':
+    'prefix': 'sem'
+    'body': 'User::ServiceEntity.create :${1:EntityName}, :module do\n\t$0\nend\n'
+  'create method':
+    'prefix': 'method'
+    'body': 'methods :${1:name} => %q{\n\tdef $1\n\t\t\n\tend\n}'
