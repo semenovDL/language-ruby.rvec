@@ -3,11 +3,38 @@
 
 '.source.ruby.rvec':
   'create entity':
-    'prefix': 'see'
-    'body': 'User::ServiceEntity.create :${1:EntityName}Class do\n\tbase_module :${1}\n\t$0\nend\n'
-  'create module':
-    'prefix': 'sem'
-    'body': 'User::ServiceEntity.create :${1:EntityName}, :module do\n\t$0\nend\n'
+    'prefix': 'ServiceEntityEntity'
+    'body': """
+      User::ServiceEntity.create :${1:EntityName}Class do
+        base_module :${1:EntityName}
+        storages '${2:Storage}'
+        $0
+      end
+    """
+  'create entity as module':
+    'prefix': 'ServiceEntityModyle'
+    'body': 'User::ServiceEntity.create :${1:EntityName}, :module do\n\t$0\nend'
   'create method':
     'prefix': 'method'
-    'body': 'methods :${1:name} => %q{\n\tdef $1\n\t\t\n\tend\n}'
+    'body': 'methods ${1:method}: %q{\n\tdef ${1:method}\n\t\t$0\n\tend\n}'
+  'create self method':
+    'prefix': '_self_method'
+    'body': 'methods _self_${1:method}: %q{\n\tdef self.${1:method}\n\t\t$0\n\tend}'
+  'add initialize param':
+    'prefix': 'param'
+    'body': '@${1:name} = param[:${1:name}]$0'
+  'initialize':
+    'prefix': 'initialize'
+    'body': 'methods initialize: %q{\n\tdef initialize(params)\n\t\t$0\n\tend}'
+  'add attribute to service entity':
+    'prefix': 'attribute'
+    'body': """
+      attribute :${1:name} do
+        type :${2:Plain}
+        description '${3:description}'
+        ${4:access :accessor}
+      end
+    """
+  'modify':
+    'prefix': 'modify'
+    'body': 'modify :${1:name} do\n\t$0\nend'

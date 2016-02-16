@@ -1,6 +1,6 @@
 {
   "name": "language-ruby.rvec",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Redefining atom-language-ruby in case of Vector-M support",
   "keywords": [
     "language",
